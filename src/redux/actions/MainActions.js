@@ -13,3 +13,24 @@ export const setPlatformRotation = (rotation) => {
         rotation: rotation
     }
 }
+
+export const setPendulumAngle = (angle) => {
+    return {
+        type: types.setPendulumAngle,
+        angle: angle
+    }
+}
+
+export const setPendulumSwing = (swing) => {
+    return {
+        type: types.setPendulumSwing,
+        swing: swing
+    }
+}
+
+export const ifr = (ifr) => {
+    return {
+        type: types.ifr,
+        ifr: ifr
+    }
+}

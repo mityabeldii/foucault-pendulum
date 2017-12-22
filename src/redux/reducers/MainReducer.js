@@ -2,10 +2,11 @@ import {types} from '../../mvConsts'
 import * as mvConsts from '../../mvConsts'
 
 const initialState = {
-    earthAngle: 0,
-    earthIsRotating: false,
     platformAngle: 0,
     platformIsRotating: false,
+    pendulumAngle: [0],
+    pendulumIsSwinging: false,
+    ifr: true,
 };
 
 export default (state = initialState, action) => {
@@ -19,6 +20,23 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 platformIsRotating: action.rotation
+            };
+        case types.setPendulumAngle:
+            let newPendulumAngle = state.pendulumAngle
+            newPendulumAngle.push(action.angle)
+            return {
+                ...state,
+                pendulumAngle: newPendulumAngle
+            };
+        case types.setPendulumSwing:
+            return {
+                ...state,
+                pendulumIsSwinging: action.swing
+            };
+        case types.ifr:
+            return {
+                ...state,
+                ifr: action.ifr
             };
         default:
             return state;

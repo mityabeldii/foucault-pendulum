@@ -9,46 +9,53 @@ class Pendulum extends React.Component {
 
     // }
 
-    state = {
-        earthAngle: 0,
-        platformAngle: 0,
-    }
-
-    // componentDidMount() {
-
+    // state = {
+    //
     // }
 
-    earthRadius = window.innerWidth * 0.1
-    
+    dotsArray = []
+
+    componentDidMount() {
+        for (let i = 0; i < 1; i++) {
+            this.dotsArray.push(i)
+        }
+    }
+
+    earthRadius = window.innerHeight * 0.2
+
     render = () => {
 
         // let {ui, profile} = this.props;
 
-        let platform = () => {
-            let earthAngle = 0
-            return(
-                <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, borderRadius: this.earthRadius, background: "white", position: "absolute", transform: 'rotate('+this.props.main.platformAngle+'deg)', }} >
-                    <div style={{width: 2, height: this.earthRadius * 2, position: "absolute", background: mvConsts.colors.border, left: this.earthRadius }} />
-                </div>
-            )
-        }
+        let offset = 2
 
-        let earth = () => {
-            let earthAngle = 0
-            let offset = 2
-            return(
-                <div style={{width: this.earthRadius * 2 + offset * 2, height: this.earthRadius * 2 + offset * 2, borderRadius: this.earthRadius, background: mvConsts.colors.border, position: "absolute", top: 17.5 + 'vh', left: 17.5 + 'vh', }} >
-                    <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, borderRadius: this.earthRadius, background: "white", position: "absolute", top: offset, left: offset, }} >
-                        {platform()}
-                    </div>
-                </div>
-            )
+        let pendulumAngle = 0
+        let platformAngle = 0
+        if (this.props.main.ifr) {
+            pendulumAngle = -this.props.main.platformAngle
+        } else {
+            platformAngle = this.props.main.platformAngle
         }
 
         return (
             <div style={{width: 70 + 'vw', height: 70 + 'vh', }} >
-                <div style={{width: 2, height: 71 + 'vh', background: mvConsts.colors.border, position: "absolute", right: 30 + 'vw', }} />
-                {earth()}
+                <div style={{marginTop: 100, marginLeft: 100, }} >
+                    <div style={{width: this.earthRadius * 2 + offset * 2, height: this.earthRadius * 2 + offset * 2, position: "absolute", background: mvConsts.colors.border, borderRadius: this.earthRadius, }} >
+                        <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", background: "white", borderRadius: this.earthRadius, top: offset, left: offset,  transform: "rotate("+ platformAngle +"deg)", }} >
+                            <div style={{width: offset * 4, height: offset * 4, position: "absolute", background: "red", borderRadius: offset * 2, marginLeft: this.earthRadius - offset * 2, top: -20, }} />
+                        </div>
+                    </div>
+                    <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", borderRadius: this.earthRadius, top: offset + 100, left: offset + 100,  transform: "rotate("+ pendulumAngle +"deg)",  }} >
+                        <div style={{width: offset, height: this.earthRadius * 2, background: mvConsts.colors.border, marginLeft: this.earthRadius, }} />
+                        {
+                            this.dotsArray.map((dot, index) => {
+                                return(
+                                    <div style={{width: offset * 4, height: offset * 4, borderRadius: offset * 2, position: "absolute", background: "red", left: this.earthRadius - offset, bottom: this.earthRadius - offset + this.earthRadius * (this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1 - index]) }} key={index} />
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         )
     }
