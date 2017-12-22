@@ -34,3 +34,16 @@ export const ifr = (ifr) => {
         ifr: ifr
     }
 }
+
+export const plot = (plot) => {
+    return {
+        type: types.plot,
+        plot: plot
+    }
+}
+export const damped = (damped) => {
+    return {
+        type: types.damped,
+        damped: damped
+    }
+}

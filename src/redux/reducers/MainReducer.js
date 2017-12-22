@@ -7,6 +7,8 @@ const initialState = {
     pendulumAngle: [0],
     pendulumIsSwinging: false,
     ifr: true,
+    plot: false,
+    damped: true,
 };
 
 export default (state = initialState, action) => {
@@ -37,6 +39,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ifr: action.ifr
+            };
+        case types.plot:
+            return {
+                ...state,
+                plot: action.plot
+            };
+        case types.damped:
+            return {
+                ...state,
+                damped: action.damped
             };
         default:
             return state;

@@ -39,6 +39,7 @@ class Pendulum extends React.Component {
 
         return (
             <div style={{width: 70 + 'vw', height: 70 + 'vh', }} >
+                <div style={{width: this.earthRadius * 2.5 + offset * 2, height: this.earthRadius * 2.5 + offset * 2, position: "absolute", top: 100 - this.earthRadius * 0.25, left: 100 - this.earthRadius * 0.25,  background: "lightblue", transform: "rotate("+ platformAngle +"deg)", }} />
                 <div style={{marginTop: 100, marginLeft: 100, }} >
                     <div style={{width: this.earthRadius * 2 + offset * 2, height: this.earthRadius * 2 + offset * 2, position: "absolute", background: mvConsts.colors.border, borderRadius: this.earthRadius, }} >
                         <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", background: "white", borderRadius: this.earthRadius, top: offset, left: offset,  transform: "rotate("+ platformAngle +"deg)", }} >

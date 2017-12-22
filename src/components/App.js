@@ -4,6 +4,7 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import Plot from './Plot'
 import Pendulum from './Pendulum'
+import SidePendulum from './SidePendulum'
 import Control from './Control'
 
 class App extends React.Component {
@@ -26,8 +27,11 @@ class App extends React.Component {
 
         return (
             <div style={{width: 100 + 'vw', height: 100 + 'vh', background: mvConsts.colors.back, }} >
-                <div style={{width: 70 + 'vw', height: 70 + 'vh', display: "inline-block", }} >
+                <div style={{width: 35 + 'vw', height: 70 + 'vh', display: "inline-block", }} >
                     <Pendulum/>
+                </div>
+                <div style={{width: 35 + 'vw', height: 70 + 'vh', display: "inline-block", }} >
+                    <SidePendulum/>
                 </div>
                 <div style={{width: 30 + 'vw', height: 70 + 'vh', display: "inline-block", }} >
                     <Control/>
