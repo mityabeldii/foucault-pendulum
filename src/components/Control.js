@@ -23,7 +23,7 @@ class Control extends React.Component {
     }
 
     swing = () => {
-        let t = this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1].index / 20
+        let t = this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1].index / (10 * this.props.main.speed)
         //ideal oscillations (A*(sin(fi)+wt))
         let newAngle = Math.sin(t)
         //damped oscillations (A*exp(-beta*t)*(sin(fi)+wt))
@@ -57,25 +57,39 @@ class Control extends React.Component {
     }
 
     twoButtons = (checkParametr, heading, firstV, secondV, onClick1, onClick2, component) => {
-        let color1 = mvConsts.colors.second
-        let color2 = mvConsts.colors.contrast
+        // let color1 = mvConsts.colors.second
+        // let color2 = mvConsts.colors.contrast
+        // if (checkParametr) {
+        //     color1 = mvConsts.colors.frame
+        // } else {
+        //     color2 = mvConsts.colors.frame
+        // }
+        let color1 = 'transparent'
+        let color2 = 'transparent'
         if (checkParametr) {
-            color1 = mvConsts.colors.frame
+            color1 = mvConsts.colors.second
         } else {
-            color2 = mvConsts.colors.frame
+            color2 = mvConsts.colors.second
         }
         return(
             <div>
                 <div style={{width: 2, height: 71 + 'vh', background: mvConsts.colors.border, position: "absolute", right: 30 + 'vw', }} />
-                <div style={{width: 30 + 'vw', height: 5 + 'vh', background: "white",  textAlign: "center", }} >
+                <div style={{width: 30 + 'vw', height: 5 + 'vh', background: mvConsts.colors.maincolor,  textAlign: "center", }} >
                     {heading}
                 </div>
-                <div style={{width: 15 + 'vw', height: 5 + 'vh', background: color1, display: "inline-block", color: "white", textAlign: "center", }} onClick={() => {onClick1()}} >
-                    {firstV}
+                {/*<div style={{width: 15 + 'vw', height: 5 + 'vh', background: color1, display: "inline-block", color: mvConsts.colors.maincolor, textAlign: "center", }} onClick={() => {onClick1()}} >*/}
+                    {/*{firstV}*/}
+                {/*</div>*/}
+                {/*<div style={{width: 15 + 'vw', height: 5 + 'vh', background: color2, display: "inline-block", color: mvConsts.colors.maincolor, textAlign: "center", }} onClick={() => {onClick2()}} >*/}
+                    {/*{secondV}*/}
+                {/*</div>*/}
+                <div style={{width: 15 + 'vw', height: 3 + 'vh', display: "inline-block", color: mvConsts.colors.maincolor, textAlign: "center", background: color1, }} onClick={() => {onClick1()}} >
+                    <button onClick={() => {onClick1()}} >{firstV}</button>
                 </div>
-                <div style={{width: 15 + 'vw', height: 5 + 'vh', background: color2, display: "inline-block", color: "white", textAlign: "center", }} onClick={() => {onClick2()}} >
-                    {secondV}
+                <div style={{width: 15 + 'vw', height: 3 + 'vh', display: "inline-block", color: mvConsts.colors.maincolor, textAlign: "center", background: color2, }} onClick={() => {onClick2()}} >
+                    <button onClick={() => {onClick2()}} >{secondV}</button>
                 </div>
+
                 {component}
             </div>
         )
@@ -101,14 +115,6 @@ class Control extends React.Component {
         return(
             <div>
                 {this.twoButtons(this.props.main.ifr, "IFR/NIFR", "IFR", "NIFR", () => {this.props.ifr(true)}, () => {this.props.ifr(false)}  )}
-            </div>
-        )
-    }
-
-    plot = () => {
-        return(
-            <div>
-                {this.twoButtons(this.props.main.plot, "Plot", "Draw", "Clear", () => {this.props.plot(true)}, () => {this.props.plot(false)}  )}
             </div>
         )
     }
@@ -157,7 +163,6 @@ class Control extends React.Component {
                 {this.earthControl()}
                 {this.pendulumControl()}
                 {this.ifr()}
-                {this.plot()}
                 {this.damped()}
                 {this.track()}
                 {this.optimisation()}

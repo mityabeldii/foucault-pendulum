@@ -22,7 +22,8 @@ class Plot extends React.Component {
         // let {ui, profile} = this.props;
         
         return (
-            <div style={{width: 100 + 'vw', height: 30 + 'vh', background: "white", position: "relative", }} >
+            <div style={{width: 100 + 'vw', height: 30 + 'vh', background: mvConsts.colors.maincolor, position: "relative", }} >
+                <button style={{position: "absolute", }} onClick={() => {this.props.plot()}} >Draw / Clear</button>
                 <div style={{width: 100 + 'vw', height: 2, background: mvConsts.colors.border, position: "absolute", }} />
                 <div style={{width: 100 + 'vw', height: 1, background: mvConsts.colors.border, position: "absolute", top: 15 + 'vh' }} />
                 <div style={{width: 10, height: 10, position: "absolute", top: 12 + 'vh', left: 0.5 + 'vw',}} >
@@ -66,11 +67,11 @@ let mapStateToProps = (state) => {
 //
 let mapDispatchToProps = (dispatch) => {
     return {
-        // closeAllOptionSpaces: () => {
-        //     return dispatch({
-        //         type: 'closeAllOptionSpaces'
-        //     })
-        // },
+        plot: () => {
+            return dispatch({
+                type: 'plot'
+            })
+        },
 
     }
 }

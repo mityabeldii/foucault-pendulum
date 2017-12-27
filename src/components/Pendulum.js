@@ -3,6 +3,8 @@ import * as mvConsts from '../mvConsts'
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Axis from './Axis'
+
 class Pendulum extends React.Component {
 
     // static defaultProps = {
@@ -42,13 +44,23 @@ class Pendulum extends React.Component {
                 <div style={{width: this.earthRadius * 2.5 + offset * 2, height: this.earthRadius * 2.5 + offset * 2, position: "absolute", top: 100 - this.earthRadius * 0.25, left: 100 - this.earthRadius * 0.25,  background: "lightblue", transform: "rotate("+ platformAngle +"deg)", }} />
                 <div style={{marginTop: 100, marginLeft: 100, }} >
                     <div style={{width: this.earthRadius * 2 + offset * 2, height: this.earthRadius * 2 + offset * 2, position: "absolute", background: mvConsts.colors.border, borderRadius: this.earthRadius, }} >
-                        <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", background: "white", borderRadius: this.earthRadius, top: offset, left: offset,  transform: "rotate("+ platformAngle +"deg)", }} >
-                            <div style={{width: offset * 4, height: offset * 4, position: "absolute", background: "red", borderRadius: offset * 2, marginLeft: this.earthRadius - offset * 2, top: -20, }} />
+                        <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", background: mvConsts.colors.maincolor, borderRadius: this.earthRadius, top: offset, left: offset,  transform: "rotate("+ platformAngle +"deg)", }} >
+                            <div style={{width: offset * 4, height: offset * 4, position: "absolute", background: "red", borderRadius: offset * 2, marginLeft: this.earthRadius - offset * 2, top: -20, }} >
+                                <div style={{position: "absolute", top: 33 + 'vh', left: -12 + 'vw', }} >
+                                    <Axis name={"x"} angle={90} />
+                                    <Axis name={"y"} angle={0} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", borderRadius: this.earthRadius, top: offset + 100, left: offset + 100,  transform: "rotate("+ pendulumAngle +"deg)",  }} >
-                        <div style={{width: offset, height: this.earthRadius * 2, background: mvConsts.colors.border, marginLeft: this.earthRadius, }} />
-                        <div className={"pendulum"} style={{width: offset * 4, height: offset * 4, borderRadius: offset * 2, position: "absolute", background: "red", left: this.earthRadius, bottom: this.earthRadius + this.earthRadius * (this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1].angle) }} />
+                        <div style={{width: offset, height: this.earthRadius * 2, background: mvConsts.colors.border, marginLeft: this.earthRadius, }} >
+                            <div style={{position: "absolute", top: 5 + 'vh', }} >
+                                <Axis name={"x'"} angle={0} />
+                                <Axis name={"y'"} angle={90} />
+                            </div>
+                        </div>
+                        <div className={"pendulum"} style={{width: offset * 4, height: offset * 4, borderRadius: offset * 2, position: "absolute", background: "red", left: this.earthRadius - offset * 1.5, bottom: this.earthRadius - offset * 3 +  this.earthRadius * (this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1].angle) }} />
                     </div>
                     {
                         this.props.main.track ? this.props.main.history.map((dot, index) => {
@@ -62,6 +74,9 @@ class Pendulum extends React.Component {
                         }) : null
                     }
                 </div>
+
+
+
             </div>
         )
     }

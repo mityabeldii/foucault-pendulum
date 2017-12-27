@@ -62,3 +62,31 @@ export const optimisation = (optimisation) => {
         optimisation: optimisation
     }
 }
+
+export const pendulum = (pendulum) => {
+    return {
+        type: types.pendulum,
+        pendulum: pendulum
+    }
+}
+
+export const sidePendulum = (sidePendulum) => {
+    return {
+        type: types.sidePendulum,
+        sidePendulum: sidePendulum
+    }
+}
+
+export const axis = (axis) => {
+    return {
+        type: types.sidePendulum,
+        axis: axis
+    }
+}
+
+export const speed = (speed) => {
+    return {
+        type: types.speed,
+        speed: speed
+    }
+}
