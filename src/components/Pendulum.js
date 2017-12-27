@@ -12,14 +12,14 @@ class Pendulum extends React.Component {
     // state = {
     //
     // }
+    
+    // componentWillReceiveProps (nextProps) {
+    //
+    // }
 
-    dotsArray = []
-
-    componentDidMount() {
-        for (let i = 0; i < 1; i++) {
-            this.dotsArray.push(i)
-        }
-    }
+    // componentDidMount() {
+    //    
+    // }
 
     earthRadius = window.innerHeight * 0.2
 
@@ -48,14 +48,19 @@ class Pendulum extends React.Component {
                     </div>
                     <div style={{width: this.earthRadius * 2, height: this.earthRadius * 2, position: "absolute", borderRadius: this.earthRadius, top: offset + 100, left: offset + 100,  transform: "rotate("+ pendulumAngle +"deg)",  }} >
                         <div style={{width: offset, height: this.earthRadius * 2, background: mvConsts.colors.border, marginLeft: this.earthRadius, }} />
-                        {
-                            this.dotsArray.map((dot, index) => {
-                                return(
-                                    <div style={{width: offset * 4, height: offset * 4, borderRadius: offset * 2, position: "absolute", background: "red", left: this.earthRadius - offset, bottom: this.earthRadius - offset + this.earthRadius * (this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1 - index]) }} key={index} />
-                                )
-                            })
-                        }
+                        <div className={"pendulum"} style={{width: offset * 4, height: offset * 4, borderRadius: offset * 2, position: "absolute", background: "red", left: this.earthRadius, bottom: this.earthRadius + this.earthRadius * (this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1]) }} />
                     </div>
+                    {
+                        this.props.main.track ? this.props.main.history.map((dot, index) => {
+                            if (dot !== undefined) {
+                                return(
+                                    <div style={{width: 2, height: 2, position: "absolute", top: dot.top, left: dot.left, background: "red" }} key={index} />
+                                )
+                            } else {
+                                return null
+                            }
+                        }) : null
+                    }
                 </div>
             </div>
         )

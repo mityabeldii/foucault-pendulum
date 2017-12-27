@@ -41,9 +41,24 @@ export const plot = (plot) => {
         plot: plot
     }
 }
+
 export const damped = (damped) => {
     return {
         type: types.damped,
         damped: damped
+    }
+}
+
+export const track = (track) => {
+    return {
+        type: types.track,
+        track: track
+    }
+}
+
+export const optimisation = (optimisation) => {
+    return {
+        type: types.optimisation,
+        optimisation: optimisation
     }
 }

@@ -125,7 +125,24 @@ class Control extends React.Component {
     damped = () => {
         return(
             <div>
-                {this.twoButtons(this.props.main.damped, "Damped oscillations", "Damped", "Ideal", () => {this.props.damped(true)}, () => {this.props.damped(false)}, this.dampPanel(), )}
+                {/*{this.twoButtons(this.props.main.damped, "Damped oscillations", "Damped", "Ideal", () => {this.props.damped(true)}, () => {this.props.damped(false)}, this.dampPanel(), )}*/}
+                {this.twoButtons(this.props.main.damped, "Damped oscillations", "Damped", "Ideal", () => {this.props.damped(true)}, () => {this.props.damped(false)}, )}
+            </div>
+        )
+    }
+
+    track = () => {
+        return(
+            <div>
+                {this.twoButtons(this.props.main.track, "Draw track", "Draw", "Clear", () => {this.props.track(true)}, () => {this.props.track(false)}, )}
+            </div>
+        )
+    }
+
+    optimisation = () => {
+        return(
+            <div>
+                {this.twoButtons(this.props.main.optimisation, "Optimisation", "Yes", "No", () => {this.props.optimisation(true)}, () => {this.props.optimisation(false)}, )}
             </div>
         )
     }
@@ -141,6 +158,8 @@ class Control extends React.Component {
                 {this.ifr()}
                 {this.plot()}
                 {this.damped()}
+                {this.track()}
+                {this.optimisation()}
             </div>
         )
     }
@@ -195,6 +214,18 @@ let mapDispatchToProps = (dispatch) => {
             return dispatch({
                 type: 'damped',
                 damped: damped
+            })
+        },
+        track: (track) => {
+            return dispatch({
+                type: 'track',
+                track: track
+            })
+        },
+        optimisation: (optimisation) => {
+            return dispatch({
+                type: 'optimisation',
+                optimisation: optimisation
             })
         },
 
