@@ -4,7 +4,7 @@ import * as mvConsts from '../../mvConsts'
 const initialState = {
     platformAngle: 0,
     platformIsRotating: false,
-    pendulumAngle: [0],
+    pendulumAngle: [{angle: 0, index: 0}],
     pendulumIsSwinging: false,
     history: [],
     ifr: true,
@@ -28,16 +28,16 @@ export default (state = initialState, action) => {
             };
         case types.setPendulumAngle:
             let newPendulumAngle = state.pendulumAngle
-            // if (state.optimisation) {
-            //     let newA = []
-            //     for (let i in newPendulumAngle) {
-            //         if (i > newPendulumAngle.length - 50) {
-            //             newA.push(newPendulumAngle[i])
-            //         }
-            //     }
-            //     newPendulumAngle = newA
-            // }
-            newPendulumAngle.push(action.angle)
+            if (state.optimisation) {
+                let newA = []
+                for (let i in newPendulumAngle) {
+                    if (i > newPendulumAngle.length - 100) {
+                        newA.push(newPendulumAngle[i])
+                    }
+                }
+                newPendulumAngle = newA
+            }
+            newPendulumAngle.push({angle: action.angle, index: state.pendulumAngle[state.pendulumAngle.length - 1].index + 1 })
             let newHistory = state.history
             if (state.track) {
                 let offsets = document.getElementsByClassName("pendulum")[0].getBoundingClientRect()

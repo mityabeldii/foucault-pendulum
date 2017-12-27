@@ -34,7 +34,7 @@ class Plot extends React.Component {
                         if (this.props.main.pendulumAngle.length > window.innerWidth) {
                             nIndex -= this.props.main.pendulumAngle.length - window.innerWidth
                         }
-                        let delta = 100 * Math.abs(this.props.main.pendulumAngle[nIndex] - this.props.main.pendulumAngle[nIndex + 1])
+                        let delta = 0
                         let size = Math.max(delta, 1)
                         return(
                             <div style={{
@@ -44,7 +44,7 @@ class Plot extends React.Component {
                                 background: "black",
                                 // display: "inline-block",
                                 position: "absolute",
-                                bottom: window.innerHeight * 0.13 * value + window.innerHeight * 0.15,
+                                bottom: window.innerHeight * 0.13 * value.angle + window.innerHeight * 0.15,
                                 left: nIndex,
                             }} key={index} >
 
