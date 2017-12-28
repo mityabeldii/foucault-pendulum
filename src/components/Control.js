@@ -23,7 +23,7 @@ class Control extends React.Component {
     }
 
     swing = () => {
-        let t = this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1].index / (10 * this.props.main.speed)
+        let t = this.props.main.pendulumAngle[this.props.main.pendulumAngle.length - 1].index / (10 / this.props.main.speed)
         //ideal oscillations (A*(sin(fi)+wt))
         let newAngle = Math.sin(t)
         //damped oscillations (A*exp(-beta*t)*(sin(fi)+wt))

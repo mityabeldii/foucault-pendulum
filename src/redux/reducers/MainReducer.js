@@ -11,14 +11,23 @@ const initialState = {
     ifr: true,
     plot: false,
     damped: false,
-    track: false,
-    optimisation: true,
+    // track: false,
+    track: true,
+    // optimisation: true,
+    optimisation: false,
     pendulum: true,
     sidePendulum: true,
     axis: true,
-    speed: 7,
+    speed: 0.1,
+    platformSpeed: 6,
     period: 0,
 };
+
+// 3 лепестка 1/19
+// елочка 10/1
+// елочка 20/1
+// елочка 40/1
+// елочка 80/1
 
 let lastTime = moment().format('x')
 let period = 0

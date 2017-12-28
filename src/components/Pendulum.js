@@ -34,9 +34,9 @@ class Pendulum extends React.Component {
         let pendulumAngle = 0
         let platformAngle = 0
         if (this.props.main.ifr) {
-            pendulumAngle = -this.props.main.platformAngle
+            pendulumAngle = this.props.main.platformAngle / (10 / this.props.main.platformSpeed)
         } else {
-            platformAngle = this.props.main.platformAngle
+            platformAngle = -this.props.main.platformAngle / (10 / this.props.main.platformSpeed)
         }
 
         return (
