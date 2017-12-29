@@ -18,8 +18,8 @@ const initialState = {
     pendulum: true,
     sidePendulum: true,
     axis: true,
-    speed: 0.1,
-    platformSpeed: 6,
+    speed: 40,
+    platformSpeed: 1,
     period: 0,
 };
 
