@@ -13,12 +13,12 @@ const initialState = {
     damped: false,
     // track: false,
     track: true,
-    // optimisation: true,
-    optimisation: false,
+    optimisation: true,
+    // optimisation: false,
     pendulum: true,
     sidePendulum: true,
     axis: true,
-    speed: 40,
+    speed: 0.5,
     platformSpeed: 1,
     period: 0,
 };
@@ -148,7 +148,16 @@ export default (state = initialState, action) => {
                 period: period,
                 speed: action.speed
             };
-
+        case types.setSpeed:
+            return {
+                ...state,
+                speed: action.speed
+            };
+        case types.setPlatformSpeed:
+            return {
+                ...state,
+                platformSpeed: action.platformSpeed
+            };
         default:
             return state;
     }

@@ -154,6 +154,32 @@ class Control extends React.Component {
         )
     }
 
+    speedControl = () => {
+        return(
+            <div>
+                <div style={{width: 2, height: 71 + 'vh', background: mvConsts.colors.border, position: "absolute", right: 30 + 'vw', }} />
+                <div style={{width: 30 + 'vw', height: 5 + 'vh', background: mvConsts.colors.maincolor,  textAlign: "center", }} >
+                    Period
+                    <input type="range" defaultValue={this.props.main.speed} min={0.1} max={10} onChange={(e) => {this.props.setSpeed(e.target.value)}} />
+
+                </div>
+            </div>
+        )
+    }
+
+    rotationControl = () => {
+        return(
+            <div>
+                <div style={{width: 2, height: 71 + 'vh', background: mvConsts.colors.border, position: "absolute", right: 30 + 'vw', }} />
+                <div style={{width: 30 + 'vw', height: 5 + 'vh', background: mvConsts.colors.maincolor,  textAlign: "center", }} >
+                    Rotation Speed
+                    <input type="range" defaultValue={this.props.main.platformSpeed} min={1} max={100} onChange={(e) => {this.props.setPlatformSpeed(e.target.value)}} />
+
+                </div>
+            </div>
+        )
+    }
+
     render = () => {
 
         // let {ui, profile} = this.props;
@@ -166,6 +192,8 @@ class Control extends React.Component {
                 {this.damped()}
                 {this.track()}
                 {this.optimisation()}
+                {this.speedControl()}
+                {this.rotationControl()}
             </div>
         )
     }
@@ -234,6 +262,18 @@ let mapDispatchToProps = (dispatch) => {
                 optimisation: optimisation
             })
         },
+        setSpeed: (speed) => {
+            return dispatch({
+                type: 'setSpeed',
+                speed: speed
+            })
+        },
+        setPlatformSpeed: (platformSpeed) => {
+            return dispatch({
+                type: 'setPlatformSpeed',
+                platformSpeed: platformSpeed
+            })
+        }
 
     }
 }

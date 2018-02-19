@@ -25,7 +25,7 @@ class Data extends React.Component {
         let period = (this.props.main.period).toFixed(2)
 
         return (
-            <div style={{position: "absolute", background: mvConsts.colors.maincolor, top: 0, left: 0, padding: 5, }} >
+            <div style={{position: "absolute", background: "transparent", top: 0, right: 40 + 'vw', padding: 5, }} >
                 <div>Angle: {angle} deg</div>
                 {/*<div>Period: {period} sec</div>*/}
             </div>

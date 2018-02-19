@@ -90,3 +90,17 @@ export const speed = (speed) => {
         speed: speed
     }
 }
+
+export const setSpeed = (speed) => {
+    return {
+        type: types.setSpeed,
+        speed: speed
+    }
+}
+
+export const setPlatformSpeed = (platformSpeed) => {
+    return {
+        type: types.setPeriod,
+        platformSpeed: platformSpeed
+    }
+}
